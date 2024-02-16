@@ -66,8 +66,8 @@ export default function FloatingPlayer() {
   return (
     <View style={styles.floatingPlayerContainer}>
       <View style={styles.metadataContainer}>
-        <Text style={styles.title}>{metadata?.cue_title}</Text>
-        <Text>{metadata?.track_artist_name}</Text>
+        <Text style={styles.title} numberOfLines={2}>{metadata?.cue_title}</Text>
+        <Text numberOfLines={2}>{metadata?.track_artist_name}</Text>
       </View>
       <Pressable
         onPress={() => {
@@ -84,9 +84,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    paddingBottom: 8,
   },
   metadataContainer: {
     paddingLeft: 8,
+    flex: 0.9
   },
   title: {
     fontWeight: "bold",
