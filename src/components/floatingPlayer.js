@@ -5,11 +5,14 @@ import TrackPlayer, {
 } from "react-native-track-player";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { getNetworkStateAsync } from "expo-network";
 import { parseString } from "react-native-xml2js";
+import { useNetInfo } from "@react-native-community/netinfo";
 import { useQuery } from "@tanstack/react-query";
 
 export default function FloatingPlayer() {
   const { bufferingDuringPlay, playing } = useIsPlaying();
+  const { isConnected } = useNetInfo();
   const activeTrack = useActiveTrack();
 
   /* Determines whether an active stream is playing and an ID is available to be displayed */
@@ -63,21 +66,27 @@ export default function FloatingPlayer() {
     return acc;
   }, {});
 
-  return (
-    <View style={styles.floatingPlayerContainer}>
-      <View style={styles.metadataContainer}>
-        <Text style={styles.title} numberOfLines={2}>{metadata?.cue_title}</Text>
-        <Text numberOfLines={2}>{metadata?.track_artist_name}</Text>
+  if (isConnected != true) {
+    return <Text>Unable to connect to the internet! Please check your network settings</Text>;
+  } else {
+    return (
+      <View style={styles.floatingPlayerContainer}>
+        <View style={styles.metadataContainer}>
+          <Text style={styles.title} numberOfLines={2}>
+            {metadata?.cue_title}
+          </Text>
+          <Text numberOfLines={2}>{metadata?.track_artist_name}</Text>
+        </View>
+        <Pressable
+          onPress={() => {
+            playing === true ? TrackPlayer.stop() : TrackPlayer.play();
+          }}
+        >
+          <Ionicons name={IconState} size={72} style={styles.playIcon} />
+        </Pressable>
       </View>
-      <Pressable
-        onPress={() => {
-          playing === true ? TrackPlayer.stop() : TrackPlayer.play();
-        }}
-      >
-        <Ionicons name={IconState} size={72} style={styles.playIcon} />
-      </Pressable>
-    </View>
-  );
+    );
+  }
 }
 const styles = StyleSheet.create({
   floatingPlayerContainer: {
@@ -88,7 +97,7 @@ const styles = StyleSheet.create({
   },
   metadataContainer: {
     paddingLeft: 8,
-    flex: 0.9
+    flex: 0.9,
   },
   title: {
     fontWeight: "bold",
