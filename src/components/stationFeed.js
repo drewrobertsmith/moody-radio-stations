@@ -56,5 +56,6 @@ export default function StationFeed({ activeTrack }) {
 const styles = StyleSheet.create({
   stationFeed: {
     justifyContent: "space-evenly",
+    paddingTop: 64,
   },
 });

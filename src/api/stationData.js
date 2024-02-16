@@ -34,9 +34,9 @@ export const STATIONDATA = [
     },
     {
       callLetters: "WMBIAM",
-      name: "Radio Moody",
+      name: "Radio Moody (Español)",
       url: "https://playerservices.streamtheworld.com/api/livestream-redirect/WMBIAM.mp3?dist=stationswitcherapp",
-      backgroundColor: "#799B3D",
+      backgroundColor: "#d19000",
       accentColor: "#003B5C",
       textColor: "#FFFFFF",
     },

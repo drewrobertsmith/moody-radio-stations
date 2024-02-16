@@ -12,7 +12,7 @@ import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
-  const [currentBackgroundColor, setCurrentBackgroundColor] = useState(null);
+  const [currentBackgroundColor, setCurrentBackgroundColor] = useState("#74a433");
   const activeTrack = useActiveTrack();
   const queryClient = new QueryClient();
 
