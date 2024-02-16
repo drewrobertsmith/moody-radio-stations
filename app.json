@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "moody-radio-stations",
+    "name": "Moody Radio Stations",
     "slug": "moody-radio-stations",
+    "scheme": "your-app-scheme",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,16 +16,37 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mediatedreality.moodyradiostations",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mediatedreality.moodyradiostations"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0c749b6f-29b3-44b9-a482-edcb27ed5c30"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0c749b6f-29b3-44b9-a482-edcb27ed5c30"
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
