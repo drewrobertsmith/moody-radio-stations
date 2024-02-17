@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { ScaleDecorator } from "react-native-draggable-flatlist";
 import TrackPlayer from "react-native-track-player";
 
-export default function renderItem({
-  activeTrack,
-  item,
-  drag,
-  isActive,
-}) {
+export default function renderItem({ activeTrack, item, drag, isActive }) {
   const [selectedStation, setSelectedStation] = useState(null);
   const [textColor, setTextColor] = useState("black");
 
@@ -32,6 +27,7 @@ export default function renderItem({
               id: item.callLetters,
               url: item.url,
               title: item.name,
+              artwork: item.logo,
               artist: "Moody Radio",
               isLiveStream: true,
             });

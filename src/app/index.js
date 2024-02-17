@@ -1,7 +1,11 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import TrackPlayer, { useActiveTrack } from "react-native-track-player";
-import { addTracks, setupPlayer } from "../services/trackPlayerServices";
+import {
+  addTracks,
+  playbackService,
+  setupPlayer,
+} from "../services/trackPlayerServices";
 import { useEffect, useState } from "react";
 
 import FloatingPlayer from "../components/floatingPlayer";
@@ -10,9 +14,14 @@ import { STATIONDATA } from "../api/stationData";
 import StationFeed from "../components/stationFeed";
 import { StatusBar } from "expo-status-bar";
 
+//Register background events for the notfication shades
+TrackPlayer.registerPlaybackService(() => playbackService);
+
 export default function App() {
+
   const [isPlayerReady, setIsPlayerReady] = useState(false);
-  const [currentBackgroundColor, setCurrentBackgroundColor] = useState("#74a433");
+  const [currentBackgroundColor, setCurrentBackgroundColor] =
+    useState("#74a433");
   const activeTrack = useActiveTrack();
   const queryClient = new QueryClient();
 
