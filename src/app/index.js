@@ -1,4 +1,5 @@
 import { Button, StyleSheet, Text, View } from "react-native";
+import { MUSICSTATIONDATA, STATIONDATA } from "../api/musicStationData";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import TrackPlayer, { useActiveTrack } from "react-native-track-player";
 import {
@@ -10,7 +11,6 @@ import { useEffect, useState } from "react";
 
 import FloatingPlayer from "../components/floatingPlayer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { STATIONDATA } from "../api/stationData";
 import StationFeed from "../components/stationFeed";
 import { StatusBar } from "expo-status-bar";
 
@@ -41,7 +41,7 @@ export default function App() {
   //this determines the background color of the app based on the current playing stream
   useEffect(() => {
     if (activeTrack && activeTrack.url) {
-      const station = STATIONDATA.find((s) => s.url === activeTrack.url);
+      const station = MUSICSTATIONDATA.find((s) => s.url === activeTrack.url);
       if (station) {
         setCurrentBackgroundColor(station.backgroundColor);
       }

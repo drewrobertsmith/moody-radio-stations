@@ -1,14 +1,14 @@
+import { MUSICSTATIONDATA, STATIONDATA } from "../api/musicStationData";
 import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import LocalStation from "./localStation";
-import { STATIONDATA } from "../api/stationData";
 import { StyleSheet } from "react-native";
 import renderItem from "./stationTitle";
 
 export default function StationFeed({ activeTrack }) {
-  const [data, setData] = useState(STATIONDATA);
+  const [data, setData] = useState(MUSICSTATIONDATA);
 
   useEffect(() => {
     const fetchData = async () => {

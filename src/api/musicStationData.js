@@ -1,4 +1,4 @@
-export const STATIONDATA = [
+export const MUSICSTATIONDATA = [
     {
       callLetters: "IM_1",
       name: "Praise & Worship",
