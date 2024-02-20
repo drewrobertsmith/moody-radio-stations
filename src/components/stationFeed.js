@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DraggableFlatList from "react-native-draggable-flatlist";
+import LocalStation from "./localStation";
 import { STATIONDATA } from "../api/stationData";
 import { StyleSheet } from "react-native";
 import renderItem from "./stationTitle";
@@ -45,17 +46,21 @@ export default function StationFeed({ activeTrack }) {
 
   return (
     <DraggableFlatList
+      ListHeaderComponent={LocalStation}
       data={data}
       onDragEnd={({ data }) => setData(data)}
       renderItem={renderItemWithActiveTrack}
       keyExtractor={(item) => item.callLetters}
       contentContainerStyle={styles.stationFeed}
+      bounces={true}
+      overScrollMode="always"
     />
   );
 }
 const styles = StyleSheet.create({
   stationFeed: {
     justifyContent: "space-evenly",
-    paddingTop: 64,
+    paddingTop: "15%",
+    paddingBottom: "50%",
   },
 });
