@@ -27,7 +27,6 @@ export default function renderItem({ activeTrack, item, drag, isActive }) {
               id: item.callLetters,
               url: item.url,
               title: item.name,
-              artwork: item.logo,
               artist: "Moody Radio",
               isLiveStream: true,
             });

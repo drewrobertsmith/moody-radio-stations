@@ -18,7 +18,6 @@ import { StatusBar } from "expo-status-bar";
 TrackPlayer.registerPlaybackService(() => playbackService);
 
 export default function App() {
-
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [currentBackgroundColor, setCurrentBackgroundColor] =
     useState("#74a433");
@@ -34,6 +33,7 @@ export default function App() {
         await addTracks();
       }
       setIsPlayerReady(isSetup);
+      console.log("player is ready");
     }
     setup();
   }, []);
