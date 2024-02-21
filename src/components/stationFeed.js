@@ -61,6 +61,5 @@ const styles = StyleSheet.create({
   stationFeed: {
     justifyContent: "space-evenly",
     paddingTop: "15%",
-    paddingBottom: "50%",
   },
 });

@@ -8,6 +8,7 @@ export default function renderItem({ activeTrack, item, drag, isActive }) {
   const [selectedStation, setSelectedStation] = useState(null);
   const [textColor, setTextColor] = useState("black");
 
+  //TODO: move this up to station list view
   useEffect(() => {
     if (activeTrack && activeTrack.id === selectedStation) {
       setTextColor(item.textColor);

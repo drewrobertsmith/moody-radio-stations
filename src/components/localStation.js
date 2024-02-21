@@ -3,6 +3,7 @@ import * as Location from "expo-location";
 import { useEffect, useState } from "react";
 
 import { LOCALSTATIONDATA } from "../api/localStationData";
+import LocalStationItem from "./localStationItem";
 import { Text } from "react-native";
 
 export default function LocalStation() {
@@ -72,16 +73,15 @@ export default function LocalStation() {
         return distanceA - distanceB;
       });
   }
-  console.log(nearestStations);
 
   let text = "Waiting...";
   if (errorMsg) {
     text = errorMsg;
   } else if (location && nearestStations.length > 0) {
-    text = `Nearest station: ${nearestStations[0].name}`;
+    text = nearestStations[0].name;
   } else if (location) {
     text = "No stations within 50 miles.";
   }
 
-  return <Text>{text}</Text>;
+  return <LocalStationItem localStationTitle={text} nearestStations={nearestStations[0]}/>;
 }

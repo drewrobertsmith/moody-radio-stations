@@ -58,7 +58,7 @@ export default function FloatingPlayer() {
     enabled: !!activeTrack?.id, // only run the query if activeTrack.id is truthy
   });
 
-  /* prases the crappy triton xml response into something workable */
+  /* parses the crappy triton xml response into something workable */
   const metadata = data?.["nowplaying-info-list"]["nowplaying-info"][0][
     "property"
   ].reduce((acc, prop) => {
@@ -67,7 +67,11 @@ export default function FloatingPlayer() {
   }, {});
 
   if (isConnected != true) {
-    return <Text>Unable to connect to the internet! Please check your network settings</Text>;
+    return (
+      <Text>
+        Unable to connect to the internet! Please check your network settings
+      </Text>
+    );
   } else {
     return (
       <View style={styles.floatingPlayerContainer}>
