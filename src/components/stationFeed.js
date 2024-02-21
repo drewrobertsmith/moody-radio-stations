@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import LocalStation from "./localStation";
+import MusicStationItem from "./musicStationItem";
 import { StyleSheet } from "react-native";
-import renderItem from "./stationTitle";
 
 export default function StationFeed({ activeTrack }) {
   const [data, setData] = useState(MUSICSTATIONDATA);
@@ -39,9 +39,9 @@ export default function StationFeed({ activeTrack }) {
     }
   }, [data]);
 
-  /* renderItem for DraggableFlatlist needs to be wrapped to pass other properties down wiht it */
+  /* renderItem component for DraggableFlatlist needs to be wrapped to pass other properties down wiht it */
   const renderItemWithActiveTrack = ({ item, drag, isActive }) => {
-    return renderItem({ activeTrack, item, drag, isActive });
+    return MusicStationItem({ activeTrack, item, drag, isActive });
   };
 
   return (

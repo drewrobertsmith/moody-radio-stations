@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ScaleDecorator } from "react-native-draggable-flatlist";
 import TrackPlayer from "react-native-track-player";
 
-export default function renderItem({ activeTrack, item, drag, isActive }) {
+export default function MusicStationItem({ activeTrack, item, drag, isActive }) {
   const [selectedStation, setSelectedStation] = useState(null);
   const [textColor, setTextColor] = useState("black");
 

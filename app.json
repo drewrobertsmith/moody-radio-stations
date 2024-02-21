@@ -14,6 +14,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "buildNumber": "1",
       "supportsTablet": true,
       "bundleIdentifier": "com.mediatedreality.moodyradiostations",
       "infoPlist": {
@@ -21,6 +22,7 @@
       }
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -36,7 +38,7 @@
       }
     },
     "runtimeVersion": {
-      "policy": "appVersion"
+      "policy": "nativeVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/0c749b6f-29b3-44b9-a482-edcb27ed5c30"
