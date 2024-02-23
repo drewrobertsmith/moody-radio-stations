@@ -1,12 +1,12 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
 import TrackPlayer from "react-native-track-player";
+import { router } from "expo-router";
 
 export default function LocalStationItem({
   localStationTitle,
   nearestStations,
 }) {
-
   return (
     <Pressable
       onPress={() => {
@@ -19,6 +19,9 @@ export default function LocalStationItem({
         });
         TrackPlayer.play();
       }}
+      onLongPress={() => {
+        router.navigate("/localStations");
+      }}
     >
       <Text style={styles.title}>{localStationTitle}</Text>
     </Pressable>
@@ -26,10 +29,6 @@ export default function LocalStationItem({
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    paddingTop: 32,
-    paddingBottom: null,
-  },
   title: {
     fontWeight: "bold",
     fontSize: 40,

@@ -6,6 +6,15 @@ import { LOCALSTATIONDATA } from "../api/localStationData";
 import LocalStationItem from "./localStationItem";
 import { Text } from "react-native";
 
+const DEFAULT = [
+  {
+    callLetters: "MB2",
+    name: "Moody Radio Network",
+    tritonId: "MB2",
+    url: "https://playerservices.streamtheworld.com/api/livestream-redirect/MB2.mp3",
+  },
+];
+
 export default function LocalStation() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -23,7 +32,7 @@ export default function LocalStation() {
       const stations = findNearestStations(location, LOCALSTATIONDATA);
       setNearestStations(stations);
     })();
-  }, []);
+  }, [setLocation]);
 
   function getDistanceFromStationInKm(lat1, lng1, lat2, lng2) {
     const R = 6371; // Radius of the earth in km
@@ -81,7 +90,13 @@ export default function LocalStation() {
     text = nearestStations[0].name;
   } else if (location) {
     text = "No stations within 50 miles.";
+    setNearestStations(DEFAULT);
   }
 
-  return <LocalStationItem localStationTitle={text} nearestStations={nearestStations[0]}/>;
+  return (
+    <LocalStationItem
+      localStationTitle={text}
+      nearestStations={nearestStations[0]}
+    />
+  );
 }
