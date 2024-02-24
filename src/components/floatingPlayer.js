@@ -60,19 +60,22 @@ export default function FloatingPlayer() {
   });
 
   /* parses the crappy triton xml response into something workable, and lets audio still play even if metadata is not available */
-  const metadata = data?.["nowplaying-info-list"]?.["nowplaying-info"]?.[0]?.[ //checks for the existance of each field, otherwise return undefined
+  const metadata = data?.["nowplaying-info-list"]?.["nowplaying-info"]?.[0]?.[
     "property"
-  ]
-    ? data["nowplaying-info-list"]["nowplaying-info"][0]["property"].reduce( //if data exists, reduce array fields to single workable javascript object
+  ] //checks for the existance of each field, otherwise return undefined
+    ? data["nowplaying-info-list"]["nowplaying-info"][0]["property"].reduce(
+        //if data exists, reduce array fields to single workable javascript object
         (acc, prop) => {
           acc[prop.$.name] = prop._;
           return acc;
         },
-        {}
+        {
+          cue_title: `${activeTrack?.title}`,
+          track_artist_name: `${activeTrack?.artist}`,
+        }
       )
-    : { //if fields return undefined return default object of active track title and artist
-        cue_title: `${activeTrack.title}`,
-        track_artist_name: `${activeTrack.artist}`,
+    : {
+        //if fields return undefined return nothing
       };
 
   console.log(metadata);
