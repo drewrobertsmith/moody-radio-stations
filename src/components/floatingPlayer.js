@@ -14,13 +14,14 @@ export default function FloatingPlayer() {
   const { bufferingDuringPlay, playing } = useIsPlaying();
   const { isConnected } = useNetInfo();
   const activeTrack = useActiveTrack();
+  console.log(activeTrack);
 
   /* Determines whether an active stream is playing and an ID is available to be displayed */
-  let callLetters;
+  let tritonId;
   if (activeTrack && activeTrack.id) {
-    callLetters = activeTrack.id;
+    tritonId = activeTrack.id;
   } else {
-    callLetters = null;
+    tritonId = null;
   }
 
   /* Determines whether a track is in a buffering, playing or not playing state and displays the appropriate button */
@@ -36,10 +37,10 @@ export default function FloatingPlayer() {
 
   /* Queries the Triton Nowplaying api for metadata. Only runs if activeTrack.Id is available and then refetches every minute */
   const { data } = useQuery({
-    queryKey: ["metadata", callLetters],
+    queryKey: ["metadata", tritonId],
     queryFn: async () => {
       const response = await fetch(
-        `https://np.tritondigital.com/public/nowplaying?mountName=${callLetters}&numberToFetch=1`
+        `https://np.tritondigital.com/public/nowplaying?mountName=${tritonId}&numberToFetch=1`
       );
       if (!response.ok) {
         throw new Error("Network Response not okay");
@@ -58,13 +59,23 @@ export default function FloatingPlayer() {
     enabled: !!activeTrack?.id, // only run the query if activeTrack.id is truthy
   });
 
-  /* parses the crappy triton xml response into something workable */
-  const metadata = data?.["nowplaying-info-list"]["nowplaying-info"][0][
+  /* parses the crappy triton xml response into something workable, and lets audio still play even if metadata is not available */
+  const metadata = data?.["nowplaying-info-list"]?.["nowplaying-info"]?.[0]?.[ //checks for the existance of each field, otherwise return undefined
     "property"
-  ].reduce((acc, prop) => {
-    acc[prop.$.name] = prop._;
-    return acc;
-  }, {});
+  ]
+    ? data["nowplaying-info-list"]["nowplaying-info"][0]["property"].reduce( //if data exists, reduce array fields to single workable javascript object
+        (acc, prop) => {
+          acc[prop.$.name] = prop._;
+          return acc;
+        },
+        {}
+      )
+    : { //if fields return undefined return default object of active track title and artist
+        cue_title: `${activeTrack.title}`,
+        track_artist_name: `${activeTrack.artist}`,
+      };
+
+  console.log(metadata);
 
   if (isConnected != true) {
     return (

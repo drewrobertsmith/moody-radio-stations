@@ -8,10 +8,10 @@ import { Text } from "react-native";
 
 const DEFAULT = [
   {
-    callLetters: "MB2",
-    name: "Moody Radio Network",
     tritonId: "MB2",
+    callLetters: "MB2",
     url: "https://playerservices.streamtheworld.com/api/livestream-redirect/MB2.mp3",
+    name: "Moody Radio Network",
   },
 ];
 
@@ -89,7 +89,6 @@ export default function LocalStation() {
   } else if (location && nearestStations.length > 0) {
     text = nearestStations[0].name;
   } else if (location) {
-    text = "No stations within 50 miles.";
     setNearestStations(DEFAULT);
   }
 
