@@ -1,8 +1,8 @@
 import { SafeAreaView, Text, View } from "react-native";
 
-import LocalStationFeed from "../components/localStationFeed";
+import SelectLocalStationFeed from "../components/selectLocalStationFeed";
 
-export default function LocalStations() {
+export default function SelectLocalStations() {
   const SearchAndFilterStations = () => {
     return <Text>Search and Filter</Text>;
   };
@@ -10,7 +10,7 @@ export default function LocalStations() {
   return (
     <SafeAreaView>
       <SearchAndFilterStations />
-      <LocalStationFeed />
+      <SelectLocalStationFeed />
     </SafeAreaView>
   );
 }

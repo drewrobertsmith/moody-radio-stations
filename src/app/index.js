@@ -1,6 +1,5 @@
-import { Button, StyleSheet, Text, View } from "react-native";
-import { MUSICSTATIONDATA, STATIONDATA } from "../api/musicStationData";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { StyleSheet, Text, View } from "react-native";
 import TrackPlayer, { useActiveTrack } from "react-native-track-player";
 import {
   addTracks,
@@ -9,10 +8,11 @@ import {
 } from "../services/trackPlayerServices";
 import { useEffect, useState } from "react";
 
+import AllStationsFeed from "../components/allStationsFeed";
 import FloatingPlayer from "../components/floatingPlayer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { LOCALSTATIONDATA } from "../api/localStationData";
-import StationFeed from "../components/stationFeed";
+import { MUSICSTATIONDATA } from "../api/musicStationData";
 import { StatusBar } from "expo-status-bar";
 
 //Register background events for the notfication shades
@@ -41,7 +41,7 @@ export default function App() {
   //this determines the background color of the app based on the current playing stream
   useEffect(() => {
     if (activeTrack && activeTrack.url) {
-      const allStations = [...MUSICSTATIONDATA, ...LOCALSTATIONDATA]; //concatenate both data arrays
+      const allStations = [...MUSICSTATIONDATA, ...LOCALSTATIONDATA]; //concatenate both data arrays to search both databases
       const station = allStations.find((s) => s.url === activeTrack.url);
       if (station) {
         setCurrentBackgroundColor(station.backgroundColor);
@@ -62,7 +62,7 @@ export default function App() {
               { backgroundColor: currentBackgroundColor },
             ]}
           >
-            <StationFeed activeTrack={activeTrack} />
+            <AllStationsFeed activeTrack={activeTrack} />
             <FloatingPlayer />
           </View>
         </QueryClientProvider>

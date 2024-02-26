@@ -11,8 +11,6 @@ export default function LocalStationItem({
 }) {
   const [selectedStation, setSelectedStation] = useState(null);
   const [textColor, setTextColor] = useState("black");
-  console.log("Active TRack: ", activeTrack);
-  console.log("Selected Station ", selectedStation);
 
   useEffect(() => {
     if (activeTrack && activeTrack.id === selectedStation) {
@@ -36,7 +34,7 @@ export default function LocalStationItem({
         setSelectedStation(nearestStations.tritonId);
       }}
       onLongPress={() => {
-        router.navigate("/localStations");
+        router.navigate("/selectLocalStations");
       }}
     >
       <Text style={[styles.title, { color: textColor }]}>

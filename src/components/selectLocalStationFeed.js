@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text } from "react-native";
 import { LOCALSTATIONDATA } from "../api/localStationData";
 import LocalStationItem from "./localStationItem";
 
-export default function LocalStationFeed() {
+export default function SelectLocalStationFeed() {
   //filter by: A-Z, frequency,   
   
   const StationSelectItem = ({ item }) => {

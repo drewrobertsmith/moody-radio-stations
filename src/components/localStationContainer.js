@@ -15,7 +15,7 @@ const DEFAULT = [
   },
 ];
 
-export default function LocalStation({ activeTrack }) {
+export default function LocalStationContainer({ activeTrack }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [nearestStations, setNearestStations] = useState([]);

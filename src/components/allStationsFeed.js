@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DraggableFlatList from "react-native-draggable-flatlist";
-import LocalStation from "./localStation";
+import LocalStationContainer from "./localStationContainer";
 import MusicStationItem from "./musicStationItem";
 import { StyleSheet } from "react-native";
 
-export default function StationFeed({ activeTrack }) {
+export default function AllStationsFeed({ activeTrack }) {
   const [data, setData] = useState(MUSICSTATIONDATA);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function StationFeed({ activeTrack }) {
 
   return (
     <DraggableFlatList
-      ListHeaderComponent={<LocalStation activeTrack={activeTrack} />}
+      ListHeaderComponent={<LocalStationContainer activeTrack={activeTrack} />}
       data={data}
       onDragEnd={({ data }) => setData(data)}
       renderItem={renderItemWithActiveTrack}
