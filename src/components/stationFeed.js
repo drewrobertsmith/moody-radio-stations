@@ -46,7 +46,7 @@ export default function StationFeed({ activeTrack }) {
 
   return (
     <DraggableFlatList
-      ListHeaderComponent={LocalStation}
+      ListHeaderComponent={<LocalStation activeTrack={activeTrack} />}
       data={data}
       onDragEnd={({ data }) => setData(data)}
       renderItem={renderItemWithActiveTrack}

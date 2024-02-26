@@ -14,7 +14,6 @@ export default function FloatingPlayer() {
   const { bufferingDuringPlay, playing } = useIsPlaying();
   const { isConnected } = useNetInfo();
   const activeTrack = useActiveTrack();
-  console.log(activeTrack);
 
   /* Determines whether an active stream is playing and an ID is available to be displayed */
   let tritonId;

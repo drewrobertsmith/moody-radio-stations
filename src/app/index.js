@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import FloatingPlayer from "../components/floatingPlayer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { LOCALSTATIONDATA } from "../api/localStationData";
 import StationFeed from "../components/stationFeed";
 import { StatusBar } from "expo-status-bar";
 
@@ -23,7 +24,6 @@ export default function App() {
     useState("#74a433");
   const activeTrack = useActiveTrack();
   const queryClient = new QueryClient();
-
   //this intantiates the player using the setupPlayer() function from the trackservice
   useEffect(() => {
     async function setup() {
@@ -41,7 +41,8 @@ export default function App() {
   //this determines the background color of the app based on the current playing stream
   useEffect(() => {
     if (activeTrack && activeTrack.url) {
-      const station = MUSICSTATIONDATA.find((s) => s.url === activeTrack.url);
+      const allStations = [...MUSICSTATIONDATA, ...LOCALSTATIONDATA]; //concatenate both data arrays
+      const station = allStations.find((s) => s.url === activeTrack.url);
       if (station) {
         setCurrentBackgroundColor(station.backgroundColor);
       }
