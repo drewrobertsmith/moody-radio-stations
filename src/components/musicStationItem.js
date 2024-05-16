@@ -10,7 +10,7 @@ export default function MusicStationItem({ activeTrack, item, drag, isActive }) 
 
   useEffect(() => {
     if (activeTrack && activeTrack.id === selectedStation) {
-      setTextColor(item.textColor);
+      setTextColor("white");
     } else {
       setTextColor("black");
     }

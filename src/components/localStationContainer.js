@@ -1,10 +1,12 @@
 import * as Location from "expo-location";
 
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 
+import { FontAwesome6 } from "@expo/vector-icons";
 import { LOCALSTATIONDATA } from "../api/localStationData";
 import LocalStationItem from "./localStationItem";
-import { Text } from "react-native";
+import { router } from "expo-router";
 
 const DEFAULT = [
   {
@@ -63,7 +65,7 @@ export default function LocalStationContainer({ activeTrack }) {
           station.lat,
           station.lng
         );
-        return distance <= 80.4672; // 50 miles in kilometers
+        return distance <= 80.4672; // search radius is within 50 miles (in kilometers)
       })
       .sort((a, b) => {
         // Sort by distance to find the nearest
@@ -93,10 +95,28 @@ export default function LocalStationContainer({ activeTrack }) {
   }
 
   return (
-    <LocalStationItem
-      localStationTitle={text}
-      nearestStations={nearestStations[0]}
-      activeTrack={activeTrack}
-    />
+    <View style={styles.container}>
+      <LocalStationItem
+        localStationTitle={text}
+        nearestStations={nearestStations[0]}
+        activeTrack={activeTrack}
+      />
+      <Pressable
+        onPress={() => {
+          router.navigate("/selectLocalStations");
+        }}
+      >
+        <FontAwesome6 name="location-dot" size={32} color="black" />
+      </Pressable>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: 32,
+  },
+});

@@ -43,15 +43,15 @@ export async function setupPlayer() {
     await TrackPlayer.setRepeatMode(RepeatMode.Off);
   }
   
-  export async function playTrack({item}) {
-    await TrackPlayer.load({
-      id: item.Id,
-      url: item.AudioUrl,
-      title: item.Title,
-      artist: item.ProgramSlug,
-    });
-    await TrackPlayer.play();
-  }
+  // export async function playTrack({item}) {
+  //   await TrackPlayer.load({
+  //     id: item.Id,
+  //     url: item.AudioUrl,
+  //     title: item.Title,
+  //     artist: item.ProgramSlug,
+  //   });
+  //   await TrackPlayer.play();
+  // }
   
   
   export async function playbackService() {

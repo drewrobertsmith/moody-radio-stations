@@ -2,7 +2,7 @@
   "expo": {
     "name": "Moody Radio Stations",
     "slug": "moody-radio-stations",
-    "scheme": "your-app-scheme",
+    "scheme": "moody-radio-stations",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

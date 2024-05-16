@@ -16,7 +16,7 @@ export default function LocalStationItem({
     if (activeTrack && activeTrack.id === selectedStation) {
       setTextColor("white");
     } else {
-      setTextColor("black")
+      setTextColor("black");
     }
   }, [selectedStation, activeTrack]);
 
@@ -32,9 +32,6 @@ export default function LocalStationItem({
         });
         TrackPlayer.play();
         setSelectedStation(nearestStations.tritonId);
-      }}
-      onLongPress={() => {
-        router.navigate("/selectLocalStations");
       }}
     >
       <Text style={[styles.title, { color: textColor }]}>

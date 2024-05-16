@@ -1,3 +1,5 @@
+import * as Linking from 'expo-linking';
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StyleSheet, Text, View } from "react-native";
 import TrackPlayer, { useActiveTrack } from "react-native-track-player";
@@ -74,7 +76,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
-    justifyContent: "space-between",
+    padding: 16,
+    justifyContent: "space-around",
   },
 });

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import TrackPlayer, {
   useActiveTrack,
   useIsPlaying,
@@ -99,7 +99,7 @@ export default function FloatingPlayer() {
             playing === true ? TrackPlayer.stop() : TrackPlayer.play();
           }}
         >
-          <Ionicons name={IconState} size={72} style={styles.playIcon} />
+          <Ionicons name={IconState} size={80} style={styles.playIcon} />
         </Pressable>
       </View>
     );
@@ -110,10 +110,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingBottom: 8,
+    //backgroundColor: "red"
   },
   metadataContainer: {
-    paddingLeft: 8,
     flex: 0.9,
   },
   title: {
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   playIcon: {
-    alignSelf: "flex-end",
-    paddingRight: 32,
+    //alignSelf: "flex-end",
+    //backgroundColor: "red"
   },
 });

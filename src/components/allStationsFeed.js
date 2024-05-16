@@ -1,11 +1,11 @@
 import { MUSICSTATIONDATA, STATIONDATA } from "../api/musicStationData";
+import { StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import LocalStationContainer from "./localStationContainer";
 import MusicStationItem from "./musicStationItem";
-import { StyleSheet } from "react-native";
 
 export default function AllStationsFeed({ activeTrack }) {
   const [data, setData] = useState(MUSICSTATIONDATA);
@@ -45,21 +45,23 @@ export default function AllStationsFeed({ activeTrack }) {
   };
 
   return (
-    <DraggableFlatList
-      ListHeaderComponent={<LocalStationContainer activeTrack={activeTrack} />}
-      data={data}
-      onDragEnd={({ data }) => setData(data)}
-      renderItem={renderItemWithActiveTrack}
-      keyExtractor={(item) => item.callLetters}
-      contentContainerStyle={styles.stationFeed}
-      bounces={true}
-      overScrollMode="always"
-    />
+      <DraggableFlatList
+        ListHeaderComponent={
+          <LocalStationContainer activeTrack={activeTrack} />
+        }
+        data={data}
+        onDragEnd={({ data }) => setData(data)}
+        renderItem={renderItemWithActiveTrack}
+        keyExtractor={(item) => item.callLetters}
+        bounces={true}
+        overScrollMode="always"
+        contentContainerStyle={styles.feedContainer}
+      />
   );
 }
+
 const styles = StyleSheet.create({
-  stationFeed: {
-    justifyContent: "space-evenly",
-    paddingTop: "15%",
+  feedContainer: {
+    //backgroundColor: "blue",
   },
 });
