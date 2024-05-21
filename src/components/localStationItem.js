@@ -2,7 +2,6 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import { useEffect, useState } from "react";
 
 import TrackPlayer from "react-native-track-player";
-import { router } from "expo-router";
 
 export default function LocalStationItem({
   localStationTitle,
@@ -24,9 +23,9 @@ export default function LocalStationItem({
     <Pressable
       onPress={() => {
         TrackPlayer.load({
-          id: nearestStations.tritonId,
-          url: nearestStations.url,
-          title: nearestStations.name,
+          id: nearestStations?.tritonId,
+          url: nearestStations?.url,
+          title: nearestStations?.name,
           artist: "Moody Radio",
           isLiveStream: true,
         });

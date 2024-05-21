@@ -77,8 +77,6 @@ export default function FloatingPlayer() {
         //if fields return undefined return nothing
       };
 
-  console.log(metadata);
-
   if (isConnected != true) {
     return (
       <Text>
